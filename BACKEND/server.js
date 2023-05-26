@@ -10,7 +10,11 @@ import cookieParser from 'cookie-parser'
 dotenv.config()
 const PORT = process.env.PORT || 4000
 
+// console.log("MONGO_URI:", process.env.MONGO_URI)
+
+
 connectDB()
+
 
 const app = express()
 app.use(express.json())

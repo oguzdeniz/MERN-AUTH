@@ -5,7 +5,9 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon BACKEND/server.js"
+    "server": "nodemon BACKEND/server.js",
+    "client": "npm --prefix FRONTEND run dev",
+    "dev": "concurrently 'npm run server' 'npm run client'"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +23,7 @@
     "mongoose": "^7.1.1"
   },
   "devDependencies": {
+    "concurrently": "^8.0.1",
     "nodemon": "^2.0.22"
   }
 }

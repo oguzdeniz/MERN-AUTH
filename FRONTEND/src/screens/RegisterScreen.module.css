@@ -1,0 +1,16 @@
+.myInput {
+  background: lightblue;
+  color: lightcoral;
+  border: none;
+}
+
+.myInput:hover {
+  color: yellow;
+  background: green
+}
+
+.myInput::placeholder {
+  color: red;
+  font-size: 10px;
+}
+
