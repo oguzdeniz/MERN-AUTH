@@ -5,6 +5,7 @@ import { userRouter } from './routes/userRoutes.js'
 import { errorHandler, notFound } from './middlewares/errorMW.js'
 import { connectDB } from './config/db.js'
 import cookieParser from 'cookie-parser'
+import path from 'path'
 
 // can now read .env variables
 dotenv.config()
@@ -24,6 +25,18 @@ app.use(cookieParser())
 
 // Routes
 app.use('/api/users', userRouter)
+
+// Check for mode
+if (process.env.NODE_ENV === "production") {
+  const __dirname = path.resolve()
+  app.use(express.static(path.join(__dirname, 'FRONTEND/dist')))
+
+  app.get("*", (req, res) => {
+    return res.sendFile(path.resolve(__dirname, "FRONTEND", "dist", index.html))
+  })
+} else {
+  app.get("/", (req, res) => res.send("Server is ready"))
+}
 
 // Error handling
 app.use(notFound)
